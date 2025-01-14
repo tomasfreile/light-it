@@ -13,7 +13,7 @@ import { Header } from './components/Header';
 import { StatsCards } from './components/StatsCards';
 
 export default function Home() {
-  const { patients, isLoading, error, fetchPatients, addPatient, updatePatient } = usePatientStore();
+  const { patients, isLoading, error, fetchPatients, addPatient, updatePatient, deletePatient } = usePatientStore();
   const [selectedPatient, setSelectedPatient] = useState<Patient | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -36,6 +36,10 @@ export default function Home() {
   const handleEditPatient = (patient: Patient) => {
     setSelectedPatient(patient);
     setIsModalOpen(true);
+  };
+
+  const handleDeletePatient = (patient: Patient) => {
+    deletePatient(patient.id);
   };
 
   const showToast = (message: Omit<ToastState, 'open'>) => {
@@ -102,6 +106,7 @@ export default function Home() {
                 key={patient.id}
                 patient={patient}
                 onEdit={handleEditPatient}
+                onDelete={handleDeletePatient}
               />
             ))}
           </div>

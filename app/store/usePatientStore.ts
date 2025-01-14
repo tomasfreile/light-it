@@ -9,6 +9,7 @@ interface PatientStore {
   fetchPatients: () => Promise<void>;
   addPatient: (patient: PatientFormData) => void;
   updatePatient: (id: string, patient: PatientFormData) => void;
+  deletePatient: (id: string) => void;
 }
 
 const API_URL = 'https://63bedcf7f5cfc0949b634fc8.mockapi.io/users';
@@ -30,7 +31,7 @@ export const usePatientStore = create<PatientStore>((set) => ({
     }
   },
 
-  addPatient: (patientData) => {
+  addPatient: (patientData: PatientFormData) => {
     const newPatient: Patient = {
       ...patientData,
       id: Date.now().toString(),
@@ -39,11 +40,17 @@ export const usePatientStore = create<PatientStore>((set) => ({
     set((state) => ({ patients: [...state.patients, newPatient] }));
   },
 
-  updatePatient: (id, patientData) => {
+  updatePatient: (id: string, patientData: PatientFormData) => {
     set((state) => ({
       patients: state.patients.map((patient) =>
         patient.id === id ? { ...patient, ...patientData } : patient
       ),
+    }));
+  },
+
+  deletePatient: (id: string) => {
+    set((state) => ({
+      patients: state.patients.filter((patient) => patient.id !== id),
     }));
   },
 })); 

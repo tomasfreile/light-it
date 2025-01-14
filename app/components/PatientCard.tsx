@@ -8,9 +8,10 @@ import { Avatar } from './ui/Avatar';
 interface PatientCardProps {
   patient: Patient;
   onEdit: (patient: Patient) => void;
+  onDelete: (patient: Patient) => void;
 }
 
-export const PatientCard = ({ patient, onEdit }: PatientCardProps) => {
+export const PatientCard = ({ patient, onEdit, onDelete }: PatientCardProps) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   const handleToggle = () => setIsExpanded(!isExpanded);
@@ -44,6 +45,7 @@ export const PatientCard = ({ patient, onEdit }: PatientCardProps) => {
           />
           <h3 className="text-lg font-semibold">{patient.name}</h3>
         </div>
+        <div className="flex items-center gap-2">
         <Button
           variant="icon"
           onClick={(e) => {
@@ -54,6 +56,18 @@ export const PatientCard = ({ patient, onEdit }: PatientCardProps) => {
         >
           <Icons.edit />
         </Button>
+        <Button
+          variant="icon"
+          onClick={(e) => {
+            e.stopPropagation();
+            onDelete(patient);
+          }}
+          className="text-red-500 hover:text-red-600"
+          aria-label={`Delete ${patient.name}'s information`}
+        >
+          <Icons.delete />
+        </Button>
+        </div>
       </div>
 
       <AnimatePresence>
