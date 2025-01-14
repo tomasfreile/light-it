@@ -42,13 +42,13 @@ yarn dev
 ## Design Decisions
 
 ### Architecture
-- **App Router**: Utilized Next's App Router for better performance and SEO capabilities
-- **Client-side State**: Chose Zustand for its simplicity and efficient state management
+- **App Router**: Next's App Router for better performance
+- **Client-side State**: Zustand for its simplicity and efficient state management
 - **Component Structure**: Modular components for better maintainability and reusability
 
 ### UI/UX
-- **Healthcare-focused Design**: Used a calming color palette suitable for healthcare applications
-- **Responsive Layout**: Mobile-first approach ensuring usability across all devices
+- **Healthcare-focused Design**: Used a color palette suitable for healthcare applications
+- **Responsive Layout**: Mobile-first approach
 - **Loading States**: Implemented skeleton loading for better user experience
-- **Accessibility**: ARIA labels, keyboard navigation, and proper focus management
+- **Accessibility**: ARIA labels, keyboard navigation, and focus management
 
